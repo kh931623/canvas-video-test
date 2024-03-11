@@ -22,6 +22,12 @@ const createVideo = (src) => {
   video.autoplay = false
   video.volume = 0.2
 
+  if (R.startsWith('blob', src)) {
+    video.addEventListener('load', () => {
+      URL.revokeObjectURL(src)
+    })
+  }
+
   return video
 }
 
